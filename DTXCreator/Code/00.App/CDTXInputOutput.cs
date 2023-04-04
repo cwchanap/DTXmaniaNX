@@ -944,9 +944,9 @@ namespace DTXCreator
 				{
 					nPan = -100;
 				}
-				else if( nPan >= 100 )
+				else if( nPan >= 999 )
 				{
-					nPan = 100;
+					nPan = 999;
 				}
 				this._Form.mgrWAVリスト管理者.tWAVをキャッシュから検索して返す_なければ新規生成する( nChipNo ).n位置_100to100 = nPan;
 			}
