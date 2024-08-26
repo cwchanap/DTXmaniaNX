@@ -130,7 +130,7 @@ namespace DTXCreator
 					{
 						// 変更ありかつ未保存なら「*」を付ける
 
-						this.Text = "DTXC* [" + strタイトル + "]";
+						this.Text = "DTXC NX *[" + strタイトル + "]";
 						this.toolStripMenuItem上書き保存.Enabled = true;
 						this.toolStripButton上書き保存.Enabled = true;
 					}
@@ -138,7 +138,7 @@ namespace DTXCreator
 					{
 						// 保存後変更がないなら「*」なない
 
-						this.Text = "DTXC [" + strタイトル + "]";
+						this.Text = "DTXC NX [" + strタイトル + "]";
 						this.toolStripMenuItem上書き保存.Enabled = false;
 						this.toolStripButton上書き保存.Enabled = false;
 					}
@@ -1563,7 +1563,7 @@ namespace DTXCreator
 				#region [ 実行中の DTXViewer に再生オプションを渡す。 ]
 				//-----------------
 				Process.Start(strDTXViewerのパス,
-					this.appアプリ設定.ViewerInfo.PlaySoundOption + this.appアプリ設定.ViewerInfo.PlayStartOption + " " +
+                    this.appアプリ設定.ViewerInfo.PlayViewerOption + this.appアプリ設定.ViewerInfo.PlaySoundOption + this.appアプリ設定.ViewerInfo.PlayStartOption + " " +
 					"\"" + this.strViewer演奏用一時ファイル名 + "\""
 					).WaitForInputIdle(20 * 1000);
 				//-----------------
@@ -1610,7 +1610,7 @@ namespace DTXCreator
 					this.mgr譜面管理者.p譜面先頭からの位置gridを含む小節を返す(this.mgr譜面管理者.n現在の譜面表示下辺の譜面先頭からの位置grid);
 
 				Process.Start(strDTXViewerのパス,
-					this.appアプリ設定.ViewerInfo.PlaySoundOption + this.appアプリ設定.ViewerInfo.PlayStartFromOption + c小節.n小節番号0to3599 + " " +
+                    this.appアプリ設定.ViewerInfo.PlayViewerOption + this.appアプリ設定.ViewerInfo.PlaySoundOption + this.appアプリ設定.ViewerInfo.PlayStartFromOption + c小節.n小節番号0to3599 + " " +
 					"\"" + this.strViewer演奏用一時ファイル名 + "\""
 					).WaitForInputIdle(20 * 1000);
 
@@ -1654,7 +1654,7 @@ namespace DTXCreator
 				//-----------------
 				CMeasure c小節 = this.mgr譜面管理者.p譜面先頭からの位置gridを含む小節を返す(this.mgr譜面管理者.n現在の譜面表示下辺の譜面先頭からの位置grid);
 				Process.Start(strDTXViewerのパス,
-					this.appアプリ設定.ViewerInfo.PlaySoundOption + this.appアプリ設定.ViewerInfo.PlayStartFromOption + c小節.n小節番号0to3599 + " " +
+                    this.appアプリ設定.ViewerInfo.PlayViewerOption + this.appアプリ設定.ViewerInfo.PlaySoundOption + this.appアプリ設定.ViewerInfo.PlayStartFromOption + c小節.n小節番号0to3599 + " " +
 					"\"" + this.strViewer演奏用一時ファイル名 + "\""
 					).WaitForInputIdle(20 * 1000);
 				//-----------------
@@ -4851,5 +4851,5 @@ namespace DTXCreator
         {
 			this.b再生速度を変更した = true;
         }
-    }
+	}
 }

@@ -25,8 +25,8 @@ namespace DTXMania
     internal class CDTXMania : Game
     {
         // プロパティ
-
-        public static readonly string VERSION = "v1.4.0 20220220";
+        public static readonly string VERSION_DISPLAY = "DTX:NX:A:A:2024051900";
+        public static readonly string VERSION = "v1.4.2 20240519";
         public static readonly string D3DXDLL = "d3dx9_43.dll";		// June 2010
         //public static readonly string D3DXDLL = "d3dx9_42.dll";	// February 2010
         //public static readonly string D3DXDLL = "d3dx9_41.dll";	// March 2009
@@ -54,7 +54,7 @@ namespace DTXMania
         public static CConfigIni ConfigIni
         {
             get;
-            private set;
+            set;
         }
 
         /// <summary>
@@ -721,7 +721,7 @@ namespace DTXMania
                                 actEnumSongs.OnActivate();
                                 CDTXMania.stageSongSelection.bIsEnumeratingSongs = true;
                                 EnumSongs.Init(CDTXMania.SongManager.listSongsDB, CDTXMania.SongManager.nNbScoresFromSongsDB);	// songs.db情報と、取得した曲数を、新インスタンスにも与える
-                                EnumSongs.StartEnumFromDisk();		// 曲検索スレッドの起動_開始
+                                EnumSongs.StartEnumFromDisk(false);		// 曲検索スレッドの起動_開始
                                 if (CDTXMania.SongManager.nNbScoresFromSongsDB == 0)	// もし初回起動なら、検索スレッドのプライオリティをLowestでなくNormalにする
                                 {
                                     EnumSongs.ChangeEnumeratePriority(ThreadPriority.Normal);
@@ -2086,9 +2086,9 @@ for (int i = 0; i < 3; i++) {
                     CDTXMania.ConfigIni.bFullScreenMode = false;
                     CDTXMania.ConfigIni.nMovieMode = 2;
 
-                    //Set windows size to 640 x 360 and set its position to a fixed location
-                    CDTXMania.ConfigIni.nウインドウwidth = 640;
-                    CDTXMania.ConfigIni.nウインドウheight = 360;
+                    //Set windows size to selected Window Size and set its position to a fixed location
+                    CDTXMania.ConfigIni.nウインドウwidth = DTXVmode.widthResolution;
+                    CDTXMania.ConfigIni.nウインドウheight = DTXVmode.heightResolution;
                     CDTXMania.ConfigIni.n初期ウィンドウ開始位置X = 5;
                     CDTXMania.ConfigIni.n初期ウィンドウ開始位置Y = 100;
 
@@ -2104,7 +2104,7 @@ for (int i = 0; i < 3; i++) {
                     CDTXMania.ConfigIni.eRandomPedal.Drums = ERandomMode.OFF;
 
                     //Set scroll speed to fixed values
-                    CDTXMania.ConfigIni.nScrollSpeed.Drums = 3;//1.5
+                    CDTXMania.ConfigIni.nScrollSpeed.Drums = 4;//2.0
                     CDTXMania.ConfigIni.nScrollSpeed.Guitar = 4;//2.0
                     CDTXMania.ConfigIni.nScrollSpeed.Bass = 4;//2.0
 

@@ -132,7 +132,7 @@ namespace DTXMania
 				this.txレーンフレームGB = CDTXMania.tGenerateTexture( CSkin.Path( @"Graphics\ScreenPlayDrums lane parts guitar.png" ) );
                 if( this.txレーンフレームGB != null )
 				{
-					this.txレーンフレームGB.nTransparency = 0xff - CDTXMania.ConfigIni.n背景の透過度;
+					this.txレーンフレームGB.nTransparency = 0xff - CDTXMania.ConfigIni.nBackgroundTransparency;
 				}
                  */
 
@@ -3858,7 +3858,13 @@ namespace DTXMania
 			if ( !pChip.bHit && ( pChip.nDistanceFromBar.Drums < 0 ) )
 			{
 				pChip.bHit = true;
-				this.actPlayInfo.n小節番号 = n小節番号plus1 - 1;
+
+                if ( CDTXMania.ConfigIni.bMetronome )
+                {
+                    CDTXMania.Skin.soundMetronome.tPlay();
+                }
+
+                this.actPlayInfo.n小節番号 = n小節番号plus1 - 1;
                 if ( configIni.bWave再生位置自動調整機能有効 && bIsDirectSound )
 				{
 					dTX.tAutoCorrectWavPlaybackPosition();

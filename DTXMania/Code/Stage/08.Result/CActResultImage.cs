@@ -163,7 +163,8 @@ namespace DTXMania
                 bitmap3.Dispose();
                 Bitmap bitmap4 = new Bitmap(0x2a, 0x30);
                 graphics = Graphics.FromImage(bitmap4);
-                graphics.DrawImage(this.iDrumSpeed, new Rectangle(0, 0, 0x2a, 0x30), new Rectangle(0, CDTXMania.ConfigIni.nScrollSpeed.Drums * 0x30, 0x2a, 0x30), GraphicsUnit.Pixel);
+                int speedTexturePosY = CDTXMania.ConfigIni.nScrollSpeed.Drums * 48 > 20 * 48 ? 20 * 48 : CDTXMania.ConfigIni.nScrollSpeed.Drums * 48;
+                graphics.DrawImage(this.iDrumSpeed, new Rectangle(0, 0, 0x2a, 0x30), new Rectangle(0, speedTexturePosY, 0x2a, 0x30), GraphicsUnit.Pixel);
                 this.txDrumSpeed = new CTexture(CDTXMania.app.Device, bitmap4, CDTXMania.TextureFormat, false);
                 graphics.Dispose();
                 //graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
@@ -211,7 +212,18 @@ namespace DTXMania
             if (this.txリザルト画像 != null)
             {
                 Matrix mat = Matrix.Identity;
-                mat *= Matrix.Scaling(245.0f / this.txリザルト画像.szImageSize.Width, 245.0f / this.txリザルト画像.szImageSize.Height, 1f);
+                float fScalingFactor;
+                float jacketOnScreenSize = 245.0f;
+                //Maintain aspect ratio by scaling only to the smaller scalingFactor
+                if (jacketOnScreenSize / this.txリザルト画像.szImageSize.Width > jacketOnScreenSize / this.txリザルト画像.szImageSize.Height)
+                {
+                    fScalingFactor = jacketOnScreenSize / this.txリザルト画像.szImageSize.Height;
+                }
+                else
+                {
+                    fScalingFactor = jacketOnScreenSize / this.txリザルト画像.szImageSize.Width;
+                }
+                mat *= Matrix.Scaling(fScalingFactor, fScalingFactor, 1f);
                 mat *= Matrix.Translation(-28f, -94.5f, 0f);
                 mat *= Matrix.RotationZ(0.3f);
 
